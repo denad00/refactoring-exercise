@@ -1,38 +1,36 @@
 import React, {useState, useEffect} from 'react';
+// import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Character from './components/Character';
 
-const charArray = [
-  {
-    name: 'Mark',
-    race: 'Human',
-    status: 'Full-Health',
-    comment: ''
-  },
-  {
-    name: 'Goerge',
-    race: 'Demon',
-    status: 'Enraged',
-    comment: 'I\'m so ANGRY!!!!'
-  },
-  {
-    name: 'Angela',
-    race: 'Fairy',
-    status: 'Full-Health',
-    comment: ''
-  }
-];
-
-const listComp = () => {
-  return charArray.map((item, i) => <Character key={i} name={item.name} race={item.race} status={item.status} comment={item.comment} />);
-}
 
 export default function App() {
   const[title, setTitle] = useState('My Game')
+  const[characters, setCharacters] = useState([])
+
+  useEffect(() => {
+    const getCharacters = async () => {
+      const charactersFromServer = await fetchCharacters()
+      setCharacters(charactersFromServer)
+    }
+    getCharacters()
+  }, [])
 
   useEffect(() => {
     document.title = title
   })
+
+  // Fetch Characters
+  const fetchCharacters = async () => {
+    const res = await fetch('http://localhost:5002/characters')
+    const data = await res.json()
+
+    return data
+  }
+
+  const listComp = () => {
+    return characters.map((characters, i) => <Character key={i} name={characters.name} race={characters.race} status={characters.status} comment={characters.comment} />);
+  }
 
   return (
     <div className="App">

@@ -1,0 +1,22 @@
+{
+  "characters": [
+    {
+      "name": "Mark",
+      "race": "Human",
+      "status": "Full-Health",
+      "comment": ""
+    },
+    {
+      "name": "George",
+      "race": "Demon",
+      "status": "Enraged",
+      "comment": "I'm so ANGRY!!!!"
+    },
+    {
+      "name": "Angela",
+      "race": "Fairy",
+      "status": "Full-Health",
+      "comment": ""
+    }
+  ]
+}
