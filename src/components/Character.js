@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import './Character.css';
 
 const Character = (props) => {
     const[name, setName] = useState(props.name)
-    const[health, setHealth] = useState('150')
-    const [stamina, setStamina] = useState('200')
-    const[gold, setGold] = useState('75')
+    const[health, setHealth] = useState(props.status.health)
+    const [stamina, setStamina] = useState(props.status.stamina)
+    const[gold, setGold] = useState(props.status.gold)
 
     return (
         <div>
@@ -46,6 +45,9 @@ const Character = (props) => {
                 id='nameChange'
                 onChange = {e => setName(e.target.value)}
             />
+            <button onClick={(e) => {
+                props.onName(props.id, name
+                )}}>Save</button>
 
         </div>
     )

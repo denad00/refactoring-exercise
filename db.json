@@ -1,22 +1,48 @@
 {
   "characters": [
     {
-      "name": "Mark",
+      "name": "Mike",
       "race": "Human",
-      "status": "Full-Health",
-      "comment": ""
+      "status": {
+          "health": "170",
+          "stamina": "50",
+          "gold": "55"
+        },
+      "comment": "",
+      "id": 1
     },
     {
       "name": "George",
       "race": "Demon",
-      "status": "Enraged",
-      "comment": "I'm so ANGRY!!!!"
+      "status": {
+        "health": "170",
+        "stamina": "50",
+        "gold": "55"
+      },
+      "comment": "I'm so ANGRY!!!!",
+      "id": 2
     },
     {
       "name": "Angela",
       "race": "Fairy",
-      "status": "Full-Health",
-      "comment": ""
+      "status": {
+        "health": "170",
+        "stamina": "50",
+        "gold": "55"
+      },
+      "comment": "",
+      "id": 3
+    },
+    {
+      "name": "Fae",
+      "race": "Fairy",
+      "status": {
+        "health": "170",
+        "stamina": "50",
+        "gold": "55"
+      },
+      "comment": "",
+      "id": 4
     }
   ]
 }

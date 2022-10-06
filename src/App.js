@@ -28,8 +28,52 @@ export default function App() {
     return data
   }
 
+  // Fetch single character
+  const fetchCharacter = async (id) => {
+    const res = await fetch(`http://localhost:5002/characters/${id}`)
+    const data = await res.json()
+
+    return data
+  }
+
+  // Change Player's Name
+  const editName = async (id, name) => {
+    const nameToEdit = await fetchCharacter(id);
+    const updName = {
+      ...nameToEdit,
+      name: name,
+    };
+
+    console.log(name);
+
+    await fetch(`http://localhost:5002/characters/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updName),
+    });
+
+    const res = await fetchCharacters();
+    setCharacters(res);
+
+  };
+
+  // Add Health
+  
+
   const listComp = () => {
-    return characters.map((characters, i) => <Character key={i} name={characters.name} race={characters.race} status={characters.status} comment={characters.comment} />);
+    return characters.map((characters, i) => 
+      <Character 
+        key={i} 
+        name={characters.name} 
+        race={characters.race} 
+        status={characters.status} 
+        comment={characters.comment} 
+        id={characters.id} 
+        onName = {editName} 
+
+      />);
   }
 
   return (
