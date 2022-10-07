@@ -11,4 +11,34 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  gap: 1rem;
+}
+
+.App-header div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.5rem;
+}
+.App-header section {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: .5rem;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  background-color: black;
+  color: white;
+  box-shadow: none;
+  border: none;
+  padding: .3rem
+}
+
+button:hover {
+  background-color: lightblue;
+  color: black;
+  cursor: pointer;
 }

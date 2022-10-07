@@ -7,6 +7,7 @@ import Character from './components/Character';
 export default function App() {
   const[title, setTitle] = useState('My Game')
   const[characters, setCharacters] = useState([])
+  const [comment, setComment] = useState([])
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -36,6 +37,7 @@ export default function App() {
     return data
   }
 
+
   // Change Player's Name
   const editName = async (id, name) => {
     const nameToEdit = await fetchCharacter(id);
@@ -43,8 +45,6 @@ export default function App() {
       ...nameToEdit,
       name: name,
     };
-
-    console.log(name);
 
     await fetch(`http://localhost:5002/characters/${id}`, {
       method: 'PUT',
@@ -59,9 +59,28 @@ export default function App() {
 
   };
 
-  // Add Health
-  
+  // Add Comment
+  const addComment = async (id, comment) => {
+    const commentToAdd = await fetchCharacter(id);
+    const insertComment = {
+      ...commentToAdd,
+      comment: comment,
+    };
 
+    await fetch(`http://localhost:5002/characters/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(insertComment),
+    });
+
+    const res = await fetchCharacters();
+    setComment(res);
+ }
+
+
+  // Show Characters on Page
   const listComp = () => {
     return characters.map((characters, i) => 
       <Character 
@@ -69,9 +88,11 @@ export default function App() {
         name={characters.name} 
         race={characters.race} 
         status={characters.status} 
+        location = {characters.location}
         comment={characters.comment} 
         id={characters.id} 
         onName = {editName} 
+        onComment = {addComment}
 
       />);
   }
