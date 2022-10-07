@@ -3,23 +3,19 @@
     {
       "name": "Mike",
       "race": "Human",
-      "status": {
-        "health": "170",
-        "stamina": "50",
-        "gold": "55"
-      },
+      "health": 170,
+      "stamina": 50,
+      "gold": 54,
       "comment": "",
       "id": 1,
-      "location": "Vancouver Tower - Level 23"
+      "location": "Vancouver Tower - Level 65"
     },
     {
       "name": "George",
       "race": "Demon",
-      "status": {
-        "health": "170",
-        "stamina": "50",
-        "gold": "55"
-      },
+      "health": 170,
+      "stamina": 50,
+      "gold": 55,
       "comment": "I'm so ANGRY!!!!",
       "id": 2,
       "location": "Vancouver Tower - Level 35"
@@ -27,11 +23,9 @@
     {
       "name": "Angela",
       "race": "Fairy",
-      "status": {
-        "health": "170",
-        "stamina": "50",
-        "gold": "55"
-      },
+      "health": 170,
+      "stamina": 50,
+      "gold": 55,
       "comment": "",
       "id": 3,
       "location": "Vancouver Tower - Level 5"
@@ -39,11 +33,9 @@
     {
       "name": "Fae",
       "race": "Fairy",
-      "status": {
-        "health": "170",
-        "stamina": "50",
-        "gold": "55"
-      },
+      "health": 170,
+      "stamina": 50,
+      "gold": 55,
       "comment": "",
       "id": 4,
       "location": "Vancouver Tower - Level 8"

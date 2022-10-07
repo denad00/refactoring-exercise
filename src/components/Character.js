@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 
 const Character = (props) => {
     const[name, setName] = useState(props.name)
-    const[health, setHealth] = useState(props.status.health)
-    const [stamina, setStamina] = useState(props.status.stamina)
-    const[gold, setGold] = useState(props.status.gold)
+    const[health, setHealth] = useState(170)
+    const [stamina, setStamina] = useState(50)
+    const[gold, setGold] = useState(55)
     const [comment, setComment] = useState(props.comment)
     const [location , setLocation] = useState(props.location)
 
@@ -22,12 +22,14 @@ const Character = (props) => {
                 <button onClick={() => {
                     setHealth(parseInt(health) + 10);
                     setGold(parseInt(gold) - 2);
+                    props.onHealth(props.id, (health + 10), (gold - 2))
                 }}>
                     Add 10 health (Costs 2 Gold)
                 </button>
                 <button onClick={() => {
                     setStamina(parseInt(stamina) + 5);
                     setGold(parseInt(gold) - 1);
+                    props.onStamina(props.id, (stamina + 5), (gold - 1))
                 }}>
                     Add 5 Stamina (Costs 2 Gold)
                 </button>
@@ -35,6 +37,7 @@ const Character = (props) => {
                     setGold(parseInt(gold) + 3)
                     setHealth(parseInt(health) - 10);
                     setStamina(parseInt(stamina) - 5);
+                    props.onGold(props.id, (gold + 3), (health - 10), (stamina - 5))
                 }}>
                     Add 3 Gold (Cost 10 Health and 5 Stamina)
                 </button>
@@ -43,17 +46,19 @@ const Character = (props) => {
 
 
             <section className="location">
-            <p>Location: {location}</p>
-            <label htmlFor="locationChange">Change Player's Location:</label>
-            <input 
-                type="text"
-                id='locationChange'
-                onChange = {e => setLocation(e.target.value)}
-            />
-            <button onClick={(e) => {
-                setGold(parseInt(gold) - 1)
-                props.onName(props.id, name
-                )}}>Change Location (Costs 1 Gold)</button>
+                <p>Location: {location}</p>
+                <label htmlFor="locationChange">Change Player's Location:</label>
+                <input 
+                    type="text"
+                    id='locationChange'
+                    onChange = {e => setLocation(e.target.value)}
+                />
+                <button onClick={(e) => {
+                    setGold(parseInt(gold) - 1)
+                    props.onLocation(props.id, location, (gold -1)
+                    )}}>
+                    Change Location (Costs 1 Gold)
+                </button>
             </section>
 
             <section className="comment">

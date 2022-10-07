@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Character from './components/Character';
 
@@ -79,6 +78,94 @@ export default function App() {
     setComment(res);
  }
 
+ //Add Health
+ const addHealth = async(id, health, gold) => {
+  const changeHealth = await fetchCharacter(id);
+  const updHealth = {
+    ...changeHealth,
+    health: health,
+    gold: gold,
+  };
+
+  await fetch(`http://localhost:5002/characters/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(updHealth),
+  });
+
+  const res = await fetchCharacters();
+  addHealth(res);
+
+ }
+
+ //Add Stamina
+ const addStamina = async(id, stamina, gold) => {
+  const changeStamina = await fetchCharacter(id);
+  const updStamina = {
+    ...changeStamina,
+    stamina: stamina,
+    gold: gold,
+  };
+
+  await fetch(`http://localhost:5002/characters/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(updStamina),
+  });
+
+  const res = await fetchCharacters();
+  addStamina(res);
+
+ }
+
+ //Add Gold
+ const addGold = async(id, stamina, gold, health) => {
+  const changeGold = await fetchCharacter(id);
+  const updGold = {
+    ...changeGold,
+    stamina: stamina,
+    gold: gold,
+    health: health
+  };
+
+  await fetch(`http://localhost:5002/characters/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(updGold),
+  });
+
+  const res = await fetchCharacters();
+  addGold(res);
+
+ }
+
+ //Change Location
+ const addLocation = async (id, location, gold) => {
+  const locationToAdd = await fetchCharacter(id);
+  const insertLocation = {
+    ...locationToAdd,
+    location: location,
+    gold: gold
+  };
+
+  await fetch(`http://localhost:5002/characters/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(insertLocation),
+  });
+
+  const res = await fetchCharacters();
+  setComment(res);
+}
+
 
   // Show Characters on Page
   const listComp = () => {
@@ -93,6 +180,10 @@ export default function App() {
         id={characters.id} 
         onName = {editName} 
         onComment = {addComment}
+        onHealth = {addHealth}
+        onStamina = {addStamina}
+        onGold = {addGold}
+        onLocation = {addLocation}
 
       />);
   }
