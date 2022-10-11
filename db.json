@@ -3,9 +3,9 @@
     {
       "name": "Mike",
       "race": "Human",
-      "health": 170,
-      "stamina": 50,
-      "gold": 54,
+      "health": 80,
+      "stamina": 70,
+      "gold": 70,
       "comment": "",
       "id": 1,
       "location": "Vancouver Tower - Level 65"

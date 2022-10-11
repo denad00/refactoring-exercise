@@ -18,7 +18,7 @@ export default function App() {
 
   useEffect(() => {
     document.title = title
-  })
+  }, [])
 
   // Fetch Characters
   const fetchCharacters = async () => {
@@ -80,6 +80,7 @@ export default function App() {
 
  //Add Health
  const addHealth = async(id, health, gold) => {
+  console.log(id, health, gold, 'fetch')
   const changeHealth = await fetchCharacter(id);
   const updHealth = {
     ...changeHealth,
@@ -94,9 +95,6 @@ export default function App() {
     },
     body: JSON.stringify(updHealth),
   });
-
-  const res = await fetchCharacters();
-  addHealth(res);
 
  }
 
@@ -116,20 +114,16 @@ export default function App() {
     },
     body: JSON.stringify(updStamina),
   });
-
-  const res = await fetchCharacters();
-  addStamina(res);
-
  }
 
  //Add Gold
- const addGold = async(id, stamina, gold, health) => {
+ const addGold = async(id, health, stamina, gold) => {
   const changeGold = await fetchCharacter(id);
   const updGold = {
     ...changeGold,
+    health: health,
     stamina: stamina,
-    gold: gold,
-    health: health
+    gold: gold
   };
 
   await fetch(`http://localhost:5002/characters/${id}`, {
@@ -140,8 +134,6 @@ export default function App() {
     body: JSON.stringify(updGold),
   });
 
-  const res = await fetchCharacters();
-  addGold(res);
 
  }
 
@@ -171,10 +163,12 @@ export default function App() {
   const listComp = () => {
     return characters.map((characters, i) => 
       <Character 
-        key={i} 
-        name={characters.name} 
-        race={characters.race} 
-        status={characters.status} 
+        key = {i} 
+        name = {characters.name} 
+        race = {characters.race} 
+        health = {characters.health} 
+        stamina = {characters.stamina}
+        gold = {characters.gold}
         location = {characters.location}
         comment={characters.comment} 
         id={characters.id} 
