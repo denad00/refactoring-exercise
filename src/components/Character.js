@@ -8,6 +8,26 @@ const Character = (props) => {
     const [comment, setComment] = useState(props.comment)
     const [location , setLocation] = useState(props.location)
 
+    const addHealth = () => {
+        setHealth(parseInt(health) + 10);
+        setGold(parseInt(gold) - 2);
+    }
+
+    const addStamina = () => {
+        setStamina(parseInt(stamina) + 5);
+        setGold(parseInt(gold) - 1);
+    }
+
+    const addGold = () => {
+        setHealth(parseInt(health) - 10);
+        setStamina(parseInt(stamina) - 5);
+        setGold(parseInt(gold) + 3);
+    }
+
+    const changeLocation = () => {
+        setGold(parseInt(gold) - 1)
+    }
+
     return (
         <div>
             <h2>{name}'s Bio:</h2>
@@ -20,23 +40,19 @@ const Character = (props) => {
                 </p>
                 <p>Gold: {gold}</p>
                 <button onClick={() => {
-                    setHealth(parseInt(health) + 10);
-                    setGold(parseInt(gold) - 2);
+                    addHealth();
                     props.onHealth(props.id, health+10, gold-2)
                 }}>
                     Add 10 health (Costs 2 Gold)
                 </button>
                 <button onClick={() => {
-                    setStamina(parseInt(stamina) + 5);
-                    setGold(parseInt(gold) - 1);
+                    addStamina();
                     props.onStamina(props.id, stamina+5, gold-1)
                 }}>
                     Add 5 Stamina (Costs 2 Gold)
                 </button>
                 <button onClick={() => {
-                    setHealth(parseInt(health) - 10);
-                    setStamina(parseInt(stamina) - 5);
-                    setGold(parseInt(gold) + 3);
+                    addGold();
                     props.onGold(props.id, health-10, stamina-5, gold+3)
                 }}>
                     Add 3 Gold (Cost 10 Health and 5 Stamina)
@@ -54,7 +70,7 @@ const Character = (props) => {
                     onChange = {e => setLocation(e.target.value)}
                 />
                 <button onClick={(e) => {
-                    setGold(parseInt(gold) - 1)
+                    changeLocation();
                     props.onLocation(props.id, location, (gold -1)
                     )}}>
                     Change Location (Costs 1 Gold)
@@ -69,7 +85,7 @@ const Character = (props) => {
                     placeholder="Add Comment"
                     onChange={(e) => setComment(e.target.value)}
                 />
-                <button onClick={() => {props.onComment(props.id, comment)}}>Save Comment</button>
+            <button onClick={() => {props.onComment(props.id, comment)}}>Save Comment</button>
             </section>
 
             <section className="change-name">

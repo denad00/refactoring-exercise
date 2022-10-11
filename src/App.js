@@ -55,7 +55,6 @@ export default function App() {
 
     const res = await fetchCharacters();
     setCharacters(res);
-
   };
 
   // Add Comment
